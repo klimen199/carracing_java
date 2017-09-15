@@ -1,6 +1,7 @@
 package View;
 
 import Controller.MyThread;
+import Controller.RoadAction;
 import Model.Enemy;
 import Model.Player;
 
@@ -14,20 +15,19 @@ import java.awt.event.KeyEvent;
 import java.util.*;
 import java.util.List;
 
-public class Road extends JPanel implements ActionListener{
-    private static final int WIN_S = 80000;
+public class Road extends JPanel {
     private ImageIcon roadIcon = new ImageIcon("img/carRoad1.png");
     private Image road = roadIcon.getImage();
     private int height = roadIcon.getIconHeight(),
             width = roadIcon.getIconWidth();
-    Timer mainTimer = new Timer(20,this); // каждые 20 мс выполняется actionPerformed данного объекта
     public Player p = new Player();
 
-    List<Enemy> enemies = new ArrayList<Enemy>();
-    Thread enemiesFactory = new MyThread(this,enemies,width,height);
+    private List<Enemy> enemies = new ArrayList<Enemy>();
+    private MyThread enemiesFactory = new MyThread(this,enemies,width,height);
+    private RoadAction roadAction = new RoadAction(this,enemies,p);
 
     public Road(){
-        mainTimer.start();
+        roadAction.getTimer().start();
         enemiesFactory.start();
         addKeyListener(new MyKeyAdapter());
         setFocusable(true);
@@ -67,36 +67,5 @@ public class Road extends JPanel implements ActionListener{
         }
     }
 
-    //убрать implements и попробовать засунуть в контроллер
-    // таймер работает по этому методу
-    public void actionPerformed(ActionEvent e){
-        p.move();
-        Iterator<Enemy> i = enemies.iterator();
-        while (i.hasNext()){
-            Enemy en = i.next();
-            en.move();
-        }
-        repaint();
-        testCollision();
-        testWin();
-    }
 
-    private void testWin() {
-        if(p.s > WIN_S){
-            JOptionPane.showMessageDialog(null,"Win");
-            System.exit(0);
-        }
-    }
-
-    private void testCollision() {
-        Iterator<Enemy> i = enemies.iterator();
-        while (i.hasNext()){
-            Enemy e = i.next();
-            if(p.getContour().intersects(e.getContour())){
-                i.remove();
-//                JOptionPane.showMessageDialog(null, "you lose!");
-//                System.exit(1);
-            }
-        }
-    }
 }
