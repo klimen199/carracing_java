@@ -1,17 +1,13 @@
 package View;
 
 import Controller.MyThread;
+import Controller.PlayerKeyAdapter;
 import Controller.RoadAction;
 import Model.Enemy;
 import Model.Player;
 
 import javax.swing.*;
-import javax.swing.Timer;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.*;
 import java.util.List;
 
@@ -29,20 +25,11 @@ public class Road extends JPanel {
     public Road(){
         roadAction.getTimer().start();
         enemiesFactory.start();
-        addKeyListener(new MyKeyAdapter());
+        addKeyListener(new PlayerKeyAdapter(p));
         setFocusable(true);
     }
 
 
-    //попробовать в контроллер
-    private class MyKeyAdapter extends KeyAdapter{
-        public void keyPressed(KeyEvent e){
-            p.keyPressed(e);
-        }
-        public void keyReleased(KeyEvent e){
-            p.keyReleased(e);
-        }
-    }
 
     public void paint(Graphics g){
         ((Graphics2D) g).drawImage(road,p.road1,0,null);

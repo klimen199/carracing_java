@@ -10,10 +10,10 @@ public class Player {
     private static final int MAX_TOP = 45;
     private static final int MAX_BOTTOM = 575;
 
-    public ImageIcon player = new ImageIcon("img/car3.png");
-    Image plCar_c = player.getImage();
-    Image plCar_u = new ImageIcon("img/car3up.png").getImage();
-    Image plCar_d = new ImageIcon("img/car3down.png").getImage();
+    private ImageIcon player = new ImageIcon("img/car3.png");
+    private Image plCar_c = player.getImage();
+    private Image plCar_u = new ImageIcon("img/car3up.png").getImage();
+    private Image plCar_d = new ImageIcon("img/car3down.png").getImage();
 
     public Image plCar = plCar_c;
 
@@ -27,7 +27,7 @@ public class Player {
         road2 = 1700;   // ширина картинки
     public int x = 50, y = 70;
     // -------------
-    int dy = 0;
+    private int dy = 0;
 
     // дублирование кода с Enemy
     public Rectangle getContour(){
