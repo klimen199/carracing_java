@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 public class RoadAction {
     private static final int WIN_S = 80000;
@@ -16,6 +17,7 @@ public class RoadAction {
     private Road road;
     private List<Enemy> enemies;
     private Player player;
+    private Random rand = new Random();
 
     Timer mainTimer;
 
@@ -56,8 +58,12 @@ public class RoadAction {
             Enemy e = i.next();
             if(player.getContour().intersects(e.getContour())){
                 i.remove();
-//                JOptionPane.showMessageDialog(null, "you lose!");
-//                System.exit(1);
+                player.health -= rand.nextInt(7)+7;
+                if(player.health<=0){
+                    player.health = 0;
+                    JOptionPane.showMessageDialog(null, "you lose!");
+                    System.exit(1);
+                }
             }
         }
     }

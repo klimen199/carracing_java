@@ -41,6 +41,7 @@ public class Road extends JPanel {
         Font speedFont =  new Font("Arial", Font.ITALIC, 20);
         g.setFont(speedFont);
         ((Graphics2D) g).drawString("Speed: " + v +" km/h",100,30);
+        ((Graphics2D) g).drawString("Health: " + p.health +" %",300,30);
 
         Iterator<Enemy> i = enemies.iterator();
         while (i.hasNext()){

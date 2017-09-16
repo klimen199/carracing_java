@@ -23,6 +23,7 @@ public class Player {
     public int v = 0,
         a = 0,
         s = 0;
+    public int health = 100;
     public int road1 = 0,
         road2 = 1700;   // ширина картинки
     public int x = 50, y = 70;
