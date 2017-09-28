@@ -14,8 +14,7 @@ public class Enemy {
     public int v = 0;
     public int x, y;
 
-
-    private Road road;
+    Road road;
 
     // дублирование кода с Player
     public Rectangle getContour(){

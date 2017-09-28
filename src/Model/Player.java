@@ -21,11 +21,11 @@ public class Player {
             width = player.getIconWidth();
 
     public int v = 0,
-        a = 0,
-        s = 0;
+            a = 0,
+            s = 0;
     public int health = 100;
     public int road1 = 0,
-        road2 = 1700;   // ширина картинки
+            road2 = 1700;   // ширина картинки
     public int x = 50, y = 70;
     // -------------
     private int dy = 0;
@@ -63,11 +63,11 @@ public class Player {
         if(key == 65 || key == KeyEvent.VK_LEFT){
             a = -3;
         }
-        if(key == 87 || key == KeyEvent.VK_UP){
+        if((key == 87 || key == KeyEvent.VK_UP) && v !=0){
             dy = 4;
             plCar = plCar_u;
         }
-        if(key == 83 || key == KeyEvent.VK_DOWN){
+        if((key == 83 || key == KeyEvent.VK_DOWN) && v!= 0){
             dy = -4;
             plCar = plCar_d;
         }

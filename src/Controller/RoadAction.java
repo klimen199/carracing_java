@@ -21,7 +21,7 @@ public class RoadAction {
 
     Timer mainTimer;
 
-    public RoadAction(Road road, List<Enemy> enemies, Player player){
+    public RoadAction(Road road, List<Enemy> enemies, Player player) {
         this.road = road;
         this.enemies = enemies;
         this.player = player;
@@ -30,7 +30,7 @@ public class RoadAction {
             public void actionPerformed(ActionEvent e) {
                 player.move();
                 Iterator<Enemy> i = enemies.iterator();
-                while (i.hasNext()){
+                while (i.hasNext()) {
                     Enemy en = i.next();
                     en.move();
                 }
@@ -41,25 +41,25 @@ public class RoadAction {
         });
     }
 
-    public Timer getTimer(){
+    public Timer getTimer() {
         return mainTimer;
     }
 
     private void testWin() {
-        if(player.s > WIN_S){
-            JOptionPane.showMessageDialog(null,"Win");
+        if (player.s > WIN_S) {
+            JOptionPane.showMessageDialog(null, "Win");
             System.exit(0);
         }
     }
 
     private void testCollision() {
         Iterator<Enemy> i = enemies.iterator();
-        while (i.hasNext()){
+        while (i.hasNext()) {
             Enemy e = i.next();
-            if(player.getContour().intersects(e.getContour())){
+            if (player.getContour().intersects(e.getContour())) {
                 i.remove();
-                player.health -= rand.nextInt(7)+7;
-                if(player.health<=0){
+                player.health -= rand.nextInt(7) + 7;
+                if (player.health <= 0) {
                     player.health = 0;
                     JOptionPane.showMessageDialog(null, "you lose!");
                     System.exit(1);
